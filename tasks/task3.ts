@@ -15,11 +15,13 @@ type Bike = {
 };
 
 // Создайте Type Guard для проверки, является ли объект автомобилем
-function isCar(vehicle: any): vehicle is Car {
+function isCar(vehicle: Car | Bike): vehicle is Car {
   return (
     typeof vehicle === "object" &&
     vehicle !== null &&
     typeof vehicle.company === "string" &&
+    "model" in vehicle &&
+    "year" in vehicle &&
     typeof vehicle.model === "string" &&
     typeof vehicle.year === "number"
   );
